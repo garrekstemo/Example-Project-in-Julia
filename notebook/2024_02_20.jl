@@ -1,8 +1,5 @@
-include("../src/Experiment.jl")
-using .Experiment
+using Experiment
 using CSV
-using DataFrames
-using LsqFit
 using GLMakie
 
 dir = "data/raw/2024_02_20"
