@@ -1,23 +1,34 @@
 # This file just generates and writes some fake data for demonstration.
+using DataFrames
+using CSV
 
-data_path = "data/raw"
-
-function generate_data()
+function generate_line()
     # Generate some data
-    x = 1:100
-    y = 2 .* x .+ randn(length(x))
+    x = 1:20
+    y = 2 .* x .+ 5 * randn(length(x))
     return x, y
 end
 
-function write_data(filepath, data)
-    # Write data to file
-    open(filepath, "w") do f
-        for i in eachindex(data)
-            println(f, data[i])
-        end
-    end
+function generate_expdecay()
+    # Generate some data
+    x = 1:100
+    y = 2 .* exp.(-0.1 .* x) .+ 0.2 * randn(length(x))
+    return x, y
 end
 
-fname = "2024_02_20.csv"
-x, y = generate_data()
-write_data(joinpath(data_path, fname), [x y])
+data_path = "data/raw"
+
+# Write line
+fname = "2024_02_20/2024_02_20.csv"
+f = joinpath(data_path, fname)
+x, y = generate_line()
+df = DataFrame(x=x, y=y)
+CSV.write(f, df)
+
+# Write exponential decay
+fname = "2024_02_21/2024_02_21.csv"
+f = joinpath(data_path, fname)
+x, y = generate_expdecay()
+df = DataFrame(x=x, y=y)
+CSV.write(f, df)
+
