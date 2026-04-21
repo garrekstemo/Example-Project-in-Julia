@@ -2,10 +2,10 @@ module Experiment
 
 export linear, expdecay
 
-using DataFrames, LsqFit
+using DataFrames, CurveFit
 
 # export common functions from other packages to use in your project
-export DataFrame, curve_fit
+export DataFrame, NonlinearCurveFitProblem, solve, coef, stderror
 
 include("analysis.jl")
 include("io.jl")
